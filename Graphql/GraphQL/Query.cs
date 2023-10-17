@@ -10,7 +10,7 @@ namespace Graphql.GraphQL
         public IQueryable<Platform> GetPlatforms([ScopedService] AppDbContext context)
         {
 
-            return context.Platforms.AsQueryable();
+            return context.Platforms;
                 
         }
 
@@ -21,7 +21,7 @@ namespace Graphql.GraphQL
         public IQueryable<Command> GetCommands([ScopedService] AppDbContext context)
         {
 
-            return context.Command.AsQueryable();
+            return context.Command;
         }
 
     }

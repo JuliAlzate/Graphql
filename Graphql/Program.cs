@@ -1,5 +1,7 @@
 using Graphql.Data;
 using Graphql.GraphQL;
+using GraphQL.Server.Ui.Voyager;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,12 +31,20 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.MapGraphQL();
+    app.MapGraphQLVoyager("ui/voyager");
+
+    //https://localhost:7207/ui/voyager
+
+
+
+
 }
+
+
 app.UseRouting();
 
-app.UseEndpoints(endpoints => {
-    endpoints.MapGraphQL();
-}) ;
 
 
 app.UseHttpsRedirection();

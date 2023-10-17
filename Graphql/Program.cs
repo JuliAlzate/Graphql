@@ -11,13 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
-builder.Services.AddDbContext <AppDbContext>(opt => opt.UseSqlServer
+builder.Services.AddPooledDbContextFactory <AppDbContext>(opt => opt.UseSqlServer
 (builder.Configuration.GetConnectionString
 ("DefaultConnection")));
 
 builder.Services.
     AddGraphQLServer()
-    .AddQueryType<Query>();
+    .AddQueryType<Query>()
+    .AddProjections(); 
 
 builder.Services.AddSwaggerGen();
 

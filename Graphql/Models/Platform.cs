@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Graphql.Models
 {
@@ -9,7 +10,8 @@ namespace Graphql.Models
         [Required]
         public string Name { get; set;}
 
-        public string LicenseKey { get; set;} 
+        public string LicenseKey { get; set;}
 
+        public ICollection<Command> Commands { get; set; } = new List<Command>();
     }
 }

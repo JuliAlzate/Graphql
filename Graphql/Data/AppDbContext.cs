@@ -13,9 +13,10 @@ namespace Graphql.Data
         public DbSet<Platform> Platforms { get; set; }
         public DbSet<Command> Command{ get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Platform>().Property(e => e.LicenseKey).IsRequired(false);
             modelBuilder
                 .Entity<Platform>()
                 .HasMany(p => p.Commands)

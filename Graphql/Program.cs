@@ -1,8 +1,10 @@
 using Graphql.Data;
 using Graphql.GraphQL;
+using Graphql.GraphQL.Platforms;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,13 @@ builder.Services.AddPooledDbContextFactory <AppDbContext>(opt => opt.UseSqlServe
 builder.Services.
     AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddProjections(); 
+    .AddMutationType<Mutation>()
+    .AddSubscriptionType<Subcription>()
+    .AddType<CommandType>()
+    .AddType<PlatformType>()
+    .AddFiltering()
+    .AddSorting();
+
 
 builder.Services.AddSwaggerGen();
 
@@ -33,19 +41,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
     app.MapGraphQL();
+    //https://localhost:7207/graphql/
     app.MapGraphQLVoyager("ui/voyager");
-
     //https://localhost:7207/ui/voyager
-
-
-
-
 }
 
-
 app.UseRouting();
-
-
+app.UseWebSockets();
 
 app.UseHttpsRedirection();
 

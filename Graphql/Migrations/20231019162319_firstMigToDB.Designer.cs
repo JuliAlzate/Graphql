@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Graphql.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231017190227_firstMigToDB")]
+    [Migration("20231019162319_firstMigToDB")]
     partial class firstMigToDB
     {
         /// <inheritdoc />
